@@ -1,17 +1,17 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import cPickle
 import array
 import pickle
+import cPickle
 
 MAX_BITS_NUM = 8
 
 # node in Huffman tree
 class Node(object):
     def __init__(self, byte=None, w=None, lnode=None, rnode=None, parent=None):
-        self.LF = lnode
-        self.RG = rnode
+        self.left = lnode
+        self.right = rnode
         self.parent = parent
         self.byte = byte
         self.w = w # weight
@@ -36,16 +36,16 @@ def build_tree(nodes):
 
 # generates Huffman code
 def gen_code(node, code_map, buff_stack=[]):
-    if not node.LF and not node.RG:
+    if not node.left and not node.right:
         code_map[node.byte] = ''.join(buff_stack)
         return
 
     buff_stack.append('0')
-    gen_code(node.LF, code_map, buff_stack)
+    gen_code(node.left, code_map, buff_stack)
     buff_stack.pop()
 
     buff_stack.append('1')
-    gen_code(node.RG, code_map, buff_stack)
+    gen_code(node.right, code_map, buff_stack)
     buff_stack.pop()
 
 def encode(content):
@@ -88,12 +88,12 @@ def decode(root, code_len, array_codes):
             total_len += 1
 
             if code >> (MAX_BITS_NUM - buf_len) & 1:
-                node = node.RG
+                node = node.right
                 if node.byte:
                     buf.append(node.byte)
                     node = root
             else:
-                node = node.LF
+                node = node.left
                 if node.byte:
                     buf.append(node.byte)
                     node = root
