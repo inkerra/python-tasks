@@ -1,13 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import pickle
-import struct
+
 import cPickle
 import array
-import marshal
+import pickle
 
-LF, RG = range(2)
-MAX_BITS = 8
+MAX_BITS_NUM = 8
 
 # node in Huffman tree
 class Node(object):
@@ -18,23 +16,19 @@ class Node(object):
         self.byte = byte
         self.w = w # weight
 
-    def __cmp__(self, other): # comparator for sorting by weight
-        if not isinstance(other, Node):
-            return super(Node, self).__cmp__(other)
-        return cmp(self.w, other.w)
-
 # builds Huffman tree
 def build_tree(nodes):
     while 1:
-        nodes.sort()
+        nodes.sort(key = lambda x: x.w)
         if len(nodes) < 2:
             return nodes[0]
 
         fst = nodes[0]
         snd = nodes[1]
-        del nodes[0]
-        del nodes[0]
-        parent = Node(lnode=fst, rnode=snd, w = fst.w + snd.w)
+
+	nodes = nodes[2:]
+	
+        parent = Node(lnode = fst, rnode = snd, w = fst.w + snd.w)
         fst.parent = parent
         snd.parent = parent
 
@@ -54,39 +48,7 @@ def gen_code(node, code_map, buff_stack=[]):
     gen_code(node.RG, code_map, buff_stack)
     buff_stack.pop()
 
-# decodes Huffman code
-def decode(root, code_len, array_codes):
-    buf = []
-    total_len = 0
-    node = root
-
-    for code in array_codes:
-        buf_len = 0
-        while (buf_len < MAX_BITS and total_len < code_len):
-            buf_len += 1
-            total_len += 1
-
-            if code >> (MAX_BITS - buf_len) & 1:
-                node = node.RG
-                if node.byte:
-                    buf.append(node.byte)
-                    node = root
-            else:
-                node = node.LF
-                if node.byte:
-                    buf.append(node.byte)
-                    node = root
-    return ''.join(buf)
-
-if __name__ == "__main__":
-    origin_file = "origin.file"
-    compressed_file = "compressed.file"
-    decompressed_file = "decompressed.file"
-    
-    # encoding
-    with open(origin_file, "rb") as fd:
-        content = fd.read()
-
+def encode(content):
     occur_table = {}
     for byte in content:
         occur_table.setdefault(byte, 1)
@@ -98,30 +60,57 @@ if __name__ == "__main__":
     gen_code(root, code_map)
 
     array_codes = array.array('B')
-    code_length = 0
-    buff, buf_len = 0, 0
+    code_len, buff, buf_len = 0, 0, 0
     for byte in content:
         code = code_map[byte]
-        for bit in list(code):
-            if bit == '1':
-                buff = (buff << 1) | 1
-            else:
-                buff = (buff << 1)
+        for bit in map(int, list(code)):
+            buff = (buff << 1) | bit
             buf_len += 1
-            if buf_len == MAX_BITS:
+            if buf_len == MAX_BITS_NUM:
                 array_codes.extend([buff])
                 buff, buf_len = 0, 0
-        code_length += len(code)
+        code_len += len(code)
 
     if buf_len != 0:
-        array_codes.extend([buff << (MAX_BITS - buf_len)])
+        array_codes.extend([buff << (MAX_BITS_NUM - buf_len)])
+
+    return root, code_len, array_codes
+
+def decode(root, code_len, array_codes):
+    buf = []
+    total_len = 0
+    node = root
+
+    for code in array_codes:
+        buf_len = 0
+        while (buf_len < MAX_BITS_NUM and total_len < code_len):
+            buf_len += 1
+            total_len += 1
+
+            if code >> (MAX_BITS_NUM - buf_len) & 1:
+                node = node.RG
+                if node.byte:
+                    buf.append(node.byte)
+                    node = root
+            else:
+                node = node.LF
+                if node.byte:
+                    buf.append(node.byte)
+                    node = root
+    return ''.join(buf)
+
+def encode_file(origin_file, compressed_file):
+    with open(origin_file, "rb") as fd:
+        content = fd.read()
+
+    root, code_len, array_codes = encode(content)
 
     with open(compressed_file, "wb") as fd:
-        marshal.dump((cPickle.dumps(root), code_length, array_codes), fd)
+        pickle.dump((cPickle.dumps(root), code_len, array_codes), fd)
 
-    # decoding
+def decode_file(compressed_file, decompressed_file):
     with open(compressed_file, "rb") as fd:
-        unpickled_root, length, array_codes = marshal.load(fd)
+        unpickled_root, length, array_codes = pickle.load(fd)
     
     root = cPickle.loads(unpickled_root)
     array_codes = array.array('B', array_codes)
@@ -130,3 +119,7 @@ if __name__ == "__main__":
 
     with open(decompressed_file, "wb") as fd:
         fd.write(decoded)
+
+if __name__ == "__main__":
+    encode_file("origin.file", "compressed.file")
+    decode_file("compressed.file", "decompressed.file")
