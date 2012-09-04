@@ -47,21 +47,22 @@ def capitalize(str1):
 
 # examples
 if __name__ == "__main__":
-    print replace("x = y", "x", "t")
-    print replace("expr: x = y", "x =", "z !=")
-    print replace("x == x", "x", "zz")
+    assert "t = y" == replace("x = y", "x", "t")
+    assert "expr: z != y" == replace("expr: x = y", "x =", "z !=")
+    assert "zz == zz" == replace("x == x", "x", "zz")
     
-    print join(" + ", ["a", "ba", "caba"])
-    print join(" + ", ["a"])
-    print join(" + ", [])
+    assert "a + ba + caba" == join(" + ", ["a", "ba", "caba"])
+    assert "a" == join(" + ", ["a"])
+    assert "" == join(" + ", [])
     
-    print split("a, ba, caba", "a")
-    print split("a, ba, caba", ",")
-    print split("", ",")
+    assert ['', 'b', 'c', 'b', ''] == split("abacaba", "a")
+    assert ['a', ' ba', ' caba'] == split("a, ba, caba", ",")
+    assert [''] == split("", ",")
     try:
         print split("abacaba", "")
+        assert False
     except ValueError, e:
-        print "ValueError captured: %s" % e
+        assert "ValueError captured: empty separator" == "ValueError captured: %s" % e
     
-    print capitalize("str")
-    print capitalize("=str")
+    assert "Str" == capitalize("str")
+    assert "=str" == capitalize("=str")

@@ -7,17 +7,17 @@ import cPickle
 
 MAX_BITS_NUM = 8
 
-# node in Huffman tree
 class Node(object):
-    def __init__(self, byte=None, w=None, lnode=None, rnode=None, parent=None):
+    """ node in Huffman tree """
+    def __init__(self, lnode=None, rnode=None, parent=None, byte=None, w=None):
         self.left = lnode
         self.right = rnode
         self.parent = parent
         self.byte = byte
         self.w = w # weight
 
-# builds Huffman tree
 def build_tree(nodes):
+    """ builds Huffman tree """
     while 1:
         nodes.sort(key = lambda x: x.w)
         if len(nodes) < 2:
@@ -34,8 +34,8 @@ def build_tree(nodes):
 
         nodes.append(parent)
 
-# generates Huffman code
 def gen_code(node, code_map, buff_stack=[]):
+    """ generates Huffman code """
     if not node.left and not node.right:
         code_map[node.byte] = ''.join(buff_stack)
         return
