@@ -2,11 +2,13 @@
 # -*- coding: utf-8 -*-
 
 import time
+import functools
 
 statistic = {}
 
 def time_me(timer, stats):
     def closure0(func):
+        @functools.wraps(func)
         def closure(*vals, **params):
             start = timer()
             res = func(*vals, **params)

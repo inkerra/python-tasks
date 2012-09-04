@@ -7,7 +7,7 @@ def func(x, y, z, t):
     return x, y, z, t
 
 def bind(f, *pending_vals, **pending_params):
-    @functools.wraps(func)
+    @functools.wraps(f)
     def closure(*vals, **params):
         vals = pending_vals + vals
         params.update(pending_params)
