@@ -89,6 +89,7 @@ except:
 
 try:
     func(y=12)(1, 2)
+    assert False, "exception should be raised"
 except:
     pass
 
