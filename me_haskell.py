@@ -3,13 +3,13 @@
 
 import functools
 
-def me_haskell(f, *h_vals, **h_params):
-    if h_vals != () or h_params != {}:
-        raise ValueError("decorator must not have vals or params")
-    
-    @functools.wraps(f)
+def me_haskell(function):
+    if len(function.func_code.co_varnames) != function.func_code.co_argcount:
+	raise TypeError("can't decorate function with * or ** arguments in its signature")
+
+    @functools.wraps(function)
     def closure(*vals, **params):
-        fvarnames = f.func_code.co_varnames
+        fvarnames = function.func_code.co_varnames
         if len(fvarnames) < len(vals):
             raise ValueError("got too much values for keyword argument")
 
@@ -26,9 +26,9 @@ def me_haskell(f, *h_vals, **h_params):
             raise ValueError("got too much values for keyword argument")
             
         if len(params) == len(fvarnames):
-            return f(**params)
+            return function(**params)
 
-        @functools.wraps(f)
+        @functools.wraps(function)
         def closure1(*nvals, **nparams):
             # skip already filled varnames (on previous steps)
             shift_filled = 0
@@ -60,37 +60,49 @@ def me_haskell(f, *h_vals, **h_params):
 
             nparams.update(params)
 
-            return me_haskell(f)(*nvals, **nparams)
+            return me_haskell(function)(*nvals, **nparams)
         return closure1
         
     return closure
 
-@me_haskell
-def func(x, y, z):
-    return x, y, z
+if __name__ == "__main__":
+	@me_haskell
+	def func(x, y, z):
+	    return x, y, z
 
-f1 = func(1)
-assert f1(2, 3) == (1, 2, 3)
+	try:
+	    @me_haskell
+	    def func2(x, *y):
+	        return (x, y)
 
-f2 = f1(z = True)
-assert f2("abc") == (1, "abc", True)
+	    assert False
 
-try:
-    func(1, x=1)
-    assert False, "exception should be raised"
-except:
-    pass
-
-try:
-    func(1, 2)(y=1)
-    assert False, "exception should be raised"
-except:
-    pass
-
-try:
-    func(y=12)(1, 2)
-    assert False, "exception should be raised"
-except:
-    pass
-
-assert func(y=12)(1, z=2) == (1, 12, 2)
+	    func2(1, 2, 3, 4)
+	except TypeError:
+	    pass
+	
+	f1 = func(1)
+	assert f1(2, 3) == (1, 2, 3)
+	
+	f2 = f1(z = True)
+	assert f2("abc") == (1, "abc", True)
+	
+	try:
+	    func(1, x=1)
+	    assert False, "exception should be raised"
+	except ValueError:
+	    pass
+	
+	try:
+	    func(1, 2)(y=1)
+	    assert False, "exception should be raised"
+	except ValueError:
+	    pass
+	
+	try:
+	    func(y=12)(1, 2)
+	    assert False, "exception should be raised"
+	except ValueError:
+	    pass
+	
+	assert func(y=12)(1, z=2) == (1, 12, 2)

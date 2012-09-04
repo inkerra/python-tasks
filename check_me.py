@@ -40,10 +40,9 @@ types_map = { \
 		"xrange": types.XRangeType, \
 	 }
 
-def check_me(function, *vals, **params):
-	if vals != () or params != {}:
-		raise ValueError("decorator must not have vals or params")
-
+def check_me(function):
+	if len(function.func_code.co_varnames) != function.func_code.co_argcount:
+		raise TypeError("can't decorate function with * or ** arguments in its signature")
 
 	@functools.wraps(function)
 	def closure(*vals, **params):
