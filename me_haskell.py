@@ -15,7 +15,7 @@ def me_haskell(function):
 
         i, j = 0, 0
         while i < len(fvarnames) and j < len(vals):
-            if not params.has_key(fvarnames[i]):
+            if fvarnames[i] not in params.keys():
                 params[fvarnames[i]] = vals[j]
                 j += 1
             else:
@@ -33,7 +33,7 @@ def me_haskell(function):
             # skip already filled varnames (on previous steps)
             shift_filled = 0
             while shift_filled < len(fvarnames):
-                if not params.has_key(fvarnames[shift_filled]):
+                if fvarnames[shift_filled] not in params.keys():
                     break
                 shift_filled += 1
 
@@ -42,7 +42,7 @@ def me_haskell(function):
             while i < len(fvarnames) and j < len(nvals):
                 varname = fvarnames[i]
                 # set function var by current new value if var hasn't been set
-                if not params.has_key(varname) and not nparams.has_key(varname):
+                if varname not in params.keys() and varname not in nparams.keys():
                     nparams[varname] = nvals[j]
                     i += 1
                 else:
@@ -51,16 +51,14 @@ def me_haskell(function):
 
             if j < len(nvals):
                 raise ValueError("got too much values for keyword argument")
-            nvals = {}
+            del nvals
 
-            # check if key has been already filled
-            for key in params.keys():
-                if nparams.has_key(key):
+            if params.viewkeys() & nparams.viewkeys():
                     raise ValueError("multiple values")
 
             nparams.update(params)
 
-            return me_haskell(function)(*nvals, **nparams)
+            return me_haskell(function)(**nparams)
         return closure1
         
     return closure
@@ -98,6 +96,12 @@ if __name__ == "__main__":
 	    assert False, "exception should be raised"
 	except ValueError:
 	    pass
+
+	try:
+	    func(x=1)(x=1)
+	    assert False, "exception should be raised"
+	except ValueError, e:
+            assert e.message == "multiple values"
 	
 	try:
 	    func(y=12)(1, 2)

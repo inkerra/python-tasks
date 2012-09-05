@@ -4,42 +4,6 @@
 import functools
 import types
 
-types_map = { \
-		"bool": types.BooleanType, \
-		"buffer": types.BooleanType, \
-		"builin_function_or_method": types.BuiltinFunctionType, \
-		"class": types.ClassType, \
-		"code": types.CodeType, \
-		"complex": types.ComplexType, \
-		"dict": types.DictType, \
-		"dictproxy": types.DictProxyType, \
-		"ellipsis": types.EllipsisType, \
-		"file": types.FileType, \
-		"float": types.FloatType, \
-		"frame": types.FrameType, \
-		"function": types.FunctionType, \
-		"generator": types.GeneratorType, \
-		"getset_descriptor": types.GetSetDescriptorType, \
-		"instance": types.InstanceType, \
-		"int": types.IntType, \
-		"list": types.ListType, \
-		"lambda": types.LambdaType, \
-		"long": types.LongType, \
-		"member_descriptor": types.MemberDescriptorType, \
-		"instancemethod": types.MethodType, \
-		"module": types.ModuleType, \
-		"NoneType": types.NoneType, \
-		"NotImplementedType": types.NotImplementedType, \
-		"object": types.ObjectType, \
-		"slice": types.SliceType, \
-		"str": types.StringType, \
-		"traceback": types.TracebackType, \
-		"tuple": types.TupleType, \
-		"type": types.TypeType, \
-		"unicode": types.UnicodeType, \
-		"xrange": types.XRangeType, \
-	 }
-
 def check_me(function):
 	if len(function.func_code.co_varnames) != function.func_code.co_argcount:
 		raise TypeError("can't decorate function with * or ** arguments in its signature")
@@ -67,16 +31,16 @@ def check_me(function):
 		varnames = function.func_code.co_varnames
         	j = 0
         	for varname in varnames:
-                    if not params.has_key(varname):
+                    if varname not in params.keys():
 			if j >= len(vals):
 				raise TypeError("wrong args number")
-			
-			if not restr.has_key(varname) or type(vals[j]) == types_map[restr[varname]]:
+                        
+			if varname not in restr.keys() or repr(type(vals[j])) == "<type '%s'>" % restr[varname]:
                     		params[varname] = vals[j]
 			else:
 				# FIXME if it should be TypeError as in task
 				# (but there is ValueError in the unittest checker)
-        			raise ValueError('{!r} is not a {!r}'.format(type(vals[j]), types_map[restr[varname]]))
+        			raise ValueError('{} is not a {}'.format(repr(type(vals[j])), "<type '%s'>" % restr[varname]))
 			j += 1
                     else:
 			if j < len(vals): # we must set vals before params
