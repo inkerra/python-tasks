@@ -1,66 +1,54 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import functools
+class decor:
+	def __init__(self, func):
+		self.func = func
 
-def postponed(function):
-    if len(function.func_code.co_varnames) != function.func_code.co_argcount:
-	raise TypeError("can't decorate function with * or ** arguments in its signature")
+	def __call__(self, *args, **kwargs):
+		print args
+		print kwargs
+		self.func(*args, **kwargs)
 
-    @functools.wraps(function)
-    def closure(**params):
-        fvarnames = function.func_code.co_varnames
-            
-        if len(params) == len(fvarnames):
-            return function(**params)
-
-        @functools.wraps(function)
-        def closure1(**nparams):
-            # skip already filled varnames (on previous steps)
-            shift_filled = 0
-            while shift_filled < len(fvarnames):
-                if fvarnames[shift_filled] not in params.keys():
-                    break
-                shift_filled += 1
-
-            # set fuction vars by new values (in new params dict)
-
-            if params.viewkeys() & nparams.viewkeys():
-                    raise ValueError("multiple values")
-
-            nparams.update(params)
-
-            return postponed(function)(**nparams)
-        return closure1
-        
-    return closure
+@decor
 class Var(object):
-    def __init__(self, name=None, value=None):
-        self.name = name
-        self.value = value
+    def __init__(self, name=None, value=None, saved=None):
+	self.name = name
+	self.value = value
+	self.saved = saved
 
     def __call__(self, **params):
-        self.known = params
-        if self.name and self.known.has_key(self.name):
-            self.value = self.known[self.name]
-        return Var(value=self.value)
+        known = self.saved if self.saved else {}
+	known.update(params)
+        if self.name and known.has_key(self.name):
+        	return Var(name=self.name, value=known[self.name])
+	return Var(name=self.name, saved=known)
 
     def __str__(self):
         if self.value == None:
             return super(Var, self).__str__()
-        return str(self.value)
+        
+        return super(Var, self).__str__() + ": " +  str(self.value)
 
     def __add__(self, other):
-        return postponed(lambda x, y: x + y)
+	
+	return Var({self.name: self.value, other.name: other.value})
 
 if __name__ == "__main__":
     x = Var('x')
     y = Var('y')
 
-    func = x + y
+    print x
+    print x(x=1)
+    print x(z=1, x=2)(x=3)
+    #xx = x(x=1)
+    #yy = y(y=2)
 
-    print func(x=3, y=2)
+    #print xx + yy
+    #func x + y
 
-    func2 = x + x
+    #print func(x=3, y=2)
 
-    print func2(x=3)
+    #func2 = x + x
+
+    #print func2(x=3)
