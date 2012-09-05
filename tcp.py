@@ -19,7 +19,8 @@ class TCP(object):
     __ip_fmt = "\d+\.\d+\.\d+\.\d+"
     __port_fmt = "[0-9]|[1-9]\d*"
 
-    fs = ["time", "protocol", "source_ip", "source_port", "dest_ip", "dest_port", "flags", "seq", "ack", "win", "options", "length"]
+    fs = ["time", "protocol", "source_ip", "source_port", "dest_ip", "dest_port", "flags", "seq", "ack", "win", "options",\
+        "length"]
 
     fmt_dict = { \
         "time": Rule("", "\d{2}:\d{2}:\d{2}[.]\d+", "\s"), \
@@ -60,7 +61,8 @@ class TCP(object):
             raise TypeError("can't parse packet data string")
 
     def __str__(self):
-        return "Packet:\n" + "\n".join([ "\t" + str(var) + " = " + str(self.__dict__[var] if self.__dict__[var] != None else str(self.__dict__[var])) for var in TCP.fs])
+        return "Packet:\n" + "\n".join([ "\t" + str(var) + " = " + str(self.__dict__[var] if self.__dict__[var] != None \
+            else str(self.__dict__[var])) for var in TCP.fs])
 
     def __repr__(self):
         res = "<class TCP " + re.search("at .*", super(TCP, self).__repr__()).group() + "\n"
@@ -78,7 +80,8 @@ def tcpdump(interface, max_count=None):
             i += 1
 
         with open("/dev/null", "w") as dev_null:
-            tcpdump_output = subprocess.check_output(["tcpdump", "tcp", "-n", "-c1", "-i" + interface], stderr=dev_null).splitlines()
+            tcpdump_output = subprocess.check_output(["tcpdump", "tcp", "-n", "-c1", "-i" + interface], \
+                stderr=dev_null).splitlines()
 
         if len(tcpdump_output) == 1:
             yield TCP(tcpdump_output[0])
