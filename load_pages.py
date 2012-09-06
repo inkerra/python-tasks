@@ -4,6 +4,8 @@
 import urllib2
 import Queue
 import threading
+import socket
+socket.setdefaulttimeout(5)
 
 def __get_content(url):
     try:
