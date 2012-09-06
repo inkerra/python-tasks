@@ -52,6 +52,9 @@ class Expression(object):
 	def __pow__(self, x):
                 return Expression(self, x, POW)
 
+	def __rpow__(self, x):
+                return Expression(x, self, POW)
+
 	def __radd__(self, x):
 		return Expression(x, self, ADD)
 
@@ -96,4 +99,4 @@ class Var(Expression):
 if __name__ == "__main__":
     x, y = 3, 4
     assert ((Var('x') + Var('y')) * 3 + 4 * Var('x'))(x=3, y=4) == (x + y) * 3 + 4 * x
-    print (Var('x') ** 2)(x=3)
+    print (2 ** Var('x'))(x=3)
