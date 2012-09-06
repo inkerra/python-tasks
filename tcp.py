@@ -7,6 +7,7 @@ import sys
 
 
 class TCP(object):
+    """ TCP packet """
     class Rule(object):
         """ for convienient formating """
         def __init__(self, before="", pattern="", after="", objtype=str):
@@ -15,27 +16,27 @@ class TCP(object):
             self.after = after
             self.objtype = objtype
 
-    """ TCP packet """
     __ip_fmt = "\d+\.\d+\.\d+\.\d+"
     __port_fmt = "[0-9]|[1-9]\d*"
 
-    fs = ["time", "protocol", "source_ip", "source_port", "dest_ip", "dest_port", "flags", "seq", "ack", "win", "options",\
-        "length"]
+    __tmp_fmt_lst = [ \
+        ("time", Rule("", "\d{2}:\d{2}:\d{2}[.]\d+", "\s")), \
+        ("protocol", Rule("", "[A-Z]+", "\s")), \
+        ("source_ip", Rule("", __ip_fmt, "[.]")), \
+        ("source_port", Rule("", __port_fmt, "\s>\s", int)), \
+        ("dest_ip", Rule("", __ip_fmt, "[.]")), \
+        ("dest_port", Rule("", __port_fmt, ":\s+", int)), \
+        ("flags", Rule("Flags\s+\[", "[^\s]+", "\],?\s?")), \
+        ("seq", Rule("", "seq\s\d+:?\d*", "?,?\s?")), \
+        ("ack", Rule("", "ack\s\d+", "?,?\s?", int)), \
+        ("win", Rule("", "win\s\d+", "?,?\s?", int)), \
+        ("options", Rule("", "options\s\[[^]]+\]", "?,?\s+", list)), \
+        ("length", Rule("", "length\s\d+", "$", int)), \
+        ]
 
-    fmt_dict = { \
-        "time": Rule("", "\d{2}:\d{2}:\d{2}[.]\d+", "\s"), \
-        "protocol": Rule("", "[A-Z]+", "\s"), \
-        "source_ip": Rule("", __ip_fmt, "[.]"), \
-        "source_port": Rule("", __port_fmt, "\s>\s", int), \
-        "dest_ip": Rule("", __ip_fmt, "[.]"), \
-        "dest_port": Rule("", __port_fmt, ":\s+", int), \
-        "flags": Rule("Flags\s+\[", "[^\s]+", "\],?\s?"), \
-        "seq": Rule("", "seq\s\d+:?\d*", "?,?\s?"), \
-        "ack": Rule("", "ack\s\d+", "?,?\s?", int), \
-        "win": Rule("", "win\s\d+", "?,?\s?", int), \
-        "options": Rule("", "options\s\[[^]]+\]", "?,?\s+", list), \
-        "length": Rule("", "length\s\d+", "$", int), \
-        }
+    fmt_dict = dict(__tmp_fmt_lst)
+    fs = [ f[0] for f in __tmp_fmt_lst]
+    del __tmp_fmt_lst
 
     format_str = "".join([ "%s(%s)%s" % (fmt_dict[f].before, fmt_dict[f].pattern, fmt_dict[f].after) for f in fs])
     
@@ -48,15 +49,16 @@ class TCP(object):
         m = re.search(TCP.format_str, datastr)
         if m:
             fields = m.groups()
-            for i in range(len(TCP.fs)):
-                self.__dict__[TCP.fs[i]] = fields[i]
-                prefix = TCP.fs[i] + " "
-                if self.__dict__[TCP.fs[i]] != None and self.__dict__[TCP.fs[i]].startswith(prefix):
-                    self.__dict__[TCP.fs[i]] = self.__dict__[TCP.fs[i]].replace(prefix, "", 1)
-                    if isinstance(TCP.fmt_dict[TCP.fs[i]].objtype(self.__dict__[TCP.fs[i]]), list):
-                        self.__dict__[TCP.fs[i]] = __chop(self.__dict__[TCP.fs[i]])
+            for tcp_fs, fld in zip(TCP.fs, fields):
+                self_tcp_fs = fld
+                prefix = tcp_fs + " "
+                if self_tcp_fs != None and self_tcp_fs.startswith(prefix):
+                    self_tcp_fs = self_tcp_fs.replace(prefix, "", 1)
+                    if TCP.fmt_dict[tcp_fs].objtype is list:
+                        self_tcp_fs = __chop(self_tcp_fs)
                     else:
-                        self.__dict__[TCP.fs[i]] = TCP.fmt_dict[TCP.fs[i]].objtype(self.__dict__[TCP.fs[i]])
+                        self_tcp_fs = TCP.fmt_dict[tcp_fs].objtype(self_tcp_fs)
+                setattr(self, tcp_fs, self_tcp_fs)
         else:
             raise TypeError("can't parse packet data string")
 
