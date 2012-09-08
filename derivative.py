@@ -1,11 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import types
-
-DEBUG_MODE = 0
-def dbg(*msg):
-	if DEBUG_MODE: print " ".join(map(str, msg))
+from types import FunctionType
 
 ADD = lambda x, y: x + y
 SUB = lambda x, y: x - y
@@ -49,13 +45,12 @@ def calculate(exp, **assigned_variables):
 	
 def __calc(it, **kwargs):
     for i in it:
-	if isinstance(i, types.FunctionType):
+	if isinstance(i, FunctionType):
 	    lf = None
             for _ in __calc(it, **kwargs):
                 lf = _
 		break
-            lv = __leaf_value(lf, **kwargs)
-            dbg("lf: ", lf, " -> ", lv)
+            lv = __val(lf, **kwargs)
             if not __is_binary_op(i):
                 yield __try_calc(i, lv)
 		return
@@ -64,13 +59,12 @@ def __calc(it, **kwargs):
 	    for _ in __calc(it, **kwargs):
 	        rg = _
 		break
-	    rv = __leaf_value(rg, **kwargs)
-	    dbg("rg:", rg, " -> ", rv)
+	    rv = __val(rg, **kwargs)
 	    yield __try_calc(i, lv, rv)
 	else: # variable or number
-	    yield __leaf_value(i, **kwargs)
+	    yield __val(i, **kwargs)
 
-def __leaf_value(exp, **kwargs):
+def __val(exp, **kwargs):
     if isinstance(exp, str): #Var
 	if kwargs.has_key(exp):
 		return kwargs[exp]
@@ -136,39 +130,34 @@ class Var(Expression):
     """ Leaf of the Expression Tree """
     pass 
 
-def derivative(exp, d_var_name, **assigned_variables):
+def derivative(exp, dvar, **assigned_variables):
     """ calculate derivative of Expression exp,
-	with respect to variable which name is d_var_name,
+	with respect to variable which name is dvar,
 	assigning variables from assigned_variables dictionary """
-    for res in __der_calc(tree_gen(exp), d_var_name, **assigned_variables):
+    for res in __der_calc(tree_gen(exp), dvar, **assigned_variables):
 	if res is None or res[1] is None:
 		raise ExpressionError("unassigned variables in result expression")
         return res[1]
 
-def __der_calc(it, d_var_name, **kwargs):
+def __der_calc(it, dvar, **kwargs):
     for i in it:
-	if isinstance(i, types.FunctionType):
+	if isinstance(i, FunctionType):
 	    lf = None
-	    for _ in __der_calc(it, d_var_name, **kwargs):
+	    for _ in __der_calc(it, dvar, **kwargs):
 		lf, dlf = _
 		break
-	    lv, dlv = __leaf_value(lf, **kwargs), __leaf_value(dlf, **kwargs)
-	    dbg("lf: ", lf, " -> ", lv)
-	    dbg("dlf:", dlf, " -> ", dlv)
+	    lv, dlv = __val(lf, **kwargs), __val(dlf, **kwargs)
 	    if not __is_binary_op(i):
 		yield __try_calc(i, lf), __try_calc(i, dlf)
 		return
-	    for _ in __der_calc(it, d_var_name, **kwargs):
+	    for _ in __der_calc(it, dvar, **kwargs):
 		rg, drg = _
 		break
 
-	    rv, drv = __leaf_value(rg, **kwargs), __leaf_value(drg, **kwargs)
-	    dbg("rg:", rg, " -> ", rv)
-	    dbg("drg:", drg, " -> ", drv)
+	    rv, drv = __val(rg, **kwargs), __val(drg, **kwargs)
 	    iv, idv = __try_calc(i, lv, rv), __try_calc(i, dlv, drv)
 
 	    if i == MUL:
-		dbg("lv={}; drv={}; rv={}; dlv={}".format(lv, drv, rv, dlv))
 		lprod, rprod = 0 if drv == 0 else __try_calc(MUL, lv, drv), \
 				0 if dlv == 0 else __try_calc(MUL, rv, dlv)
 		yield (iv, __try_calc(ADD, lprod, rprod))
@@ -176,17 +165,17 @@ def __der_calc(it, d_var_name, **kwargs):
 		yield (iv, __try_calc(MUL, dlv, \
 			__try_calc(MUL, rv, __try_calc(POW, lv, (rv - 1)))))
 	    elif i == DIV:
-		yield (iv, float(dlv * rv - lv * drv) / (float(rv) ** 2))
+		yield (iv, \
+			__try_calc(DIV, \
+				__try_calc(MUL, dlv, rv) - \
+				__try_calc(MUL, lv, drv), \
+					__try_calc(POW, float(rv), 2)) )
 	    elif i in {ADD, SUB}:
 		yield (iv, idv)
 	    else:
 		raise ExpressionError("unsupported operation for derivation")
 	else:
-	    iv = __leaf_value(i, **kwargs)
-            d_iv = int(i == d_var_name) if isinstance(i, str) else 0
-            dbg("x: ", i, " ->", iv)
-	    dbg("dx: ", i, "->", d_iv)
-            yield iv, d_iv
+            yield __val(i, **kwargs), (i == dvar) if isinstance(i, str) else 0
 
 if __name__ == "__main__":
     assert 1 == derivative(Var('x'), 'x')
@@ -203,7 +192,7 @@ if __name__ == "__main__":
     assert (-1) == derivative((- Var('x') - Var('y')),'y')
     assert (-4) == derivative(- Var('x') * Var('x') + Var('y'), 'x', x=2)
     try:
-    	print (- Var('x') ** Var('x') + Var('y'))(x=2)
+    	val = (- Var('x') ** Var('x') + Var('y'))(x=2)
     except ExpressionError:
 	pass
     else:
