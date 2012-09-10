@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import common
+from common import SerializationError
 
 def serialize(item):
 	if isinstance(item, str):
@@ -14,6 +14,6 @@ def serialize(item):
 			buf.append(serialize(e))
 		return "[%s]" % "".join(buf)
         else:
-            raise SerializationError("unsupported type: " + type(item))
+            raise SerializationError("unsupported type: {} ".format(type(item)))
 
 __all__ = ['serialize']

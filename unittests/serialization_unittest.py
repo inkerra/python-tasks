@@ -6,6 +6,7 @@ from nose.tools import eq_
 
 import sys
 sys.path.insert(0, "../")
+
 from serialization.serialize import serialize
 from serialization.deserialize import deserialize
 from serialization.common import SerializationError
@@ -53,36 +54,11 @@ class ListOfListSomeElements(unittest.TestCase):
 
 class ExceptionsTestCase(unittest.TestCase):
     def test_nonsupported_type(self):
-        try:
-            serialize(1.2)
-        except:
-            assert True
-
-        try:
-            deserialize('<int>')
-        except:
-            assert True
-
-        try:
-            deserialize('<int=')
-        except:
-            assert True
-
-        try:
-            deserialize('<aba=caba>')
-        except:
-            assert True
-        
-        try:
-            deserialize('[<int=0>]<int=1>')
-        except:
-            assert True
-        
-        try:
-            deserialize('[>]')
-        except:
-            assert True
-        try:
-            deserialize('~')
-        except:
-            assert True
+        self.assertRaises(SerializationError, serialize, (1.2))
+        self.assertRaises(SerializationError, deserialize, "<int>")
+        self.assertRaises(SerializationError, deserialize, "<int=")
+        self.assertRaises(SerializationError, deserialize, "<aba=caba>")
+        self.assertRaises(SerializationError, deserialize, "[<int=0>]<int=1>")
+        self.assertRaises(SerializationError, deserialize, "[>]")
+        self.assertRaises(SerializationError, deserialize, "[~]")
+        self.assertRaises(SerializationError, deserialize, "~")
