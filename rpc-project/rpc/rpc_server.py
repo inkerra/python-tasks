@@ -1,8 +1,13 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import sys
+sys.path.insert(0, "../")
+
+from common import MyRPC
+
 import socket
-from rpc import *
+
 
 class RPCServer(MyRPC):
 	def __init__(self, ip, port):

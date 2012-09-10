@@ -1,9 +1,13 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import sys
+sys.path.insert(0, "../")
+
+from common import MyRPC
+
 import socket
 socket.setdefaulttimeout(5)
-from rpc import MyRPC
 
 class RPCClient(MyRPC):
 	def __getattr__(self, name):
