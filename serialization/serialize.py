@@ -17,6 +17,3 @@ def serialize(item):
             raise SerializationError("unsupported type: " + type(item))
 
 __all__ = ['serialize']
-
-if __name__ == "__main__":
-	assert "[<int=0>[<int=1><int=2>]<3=abc>]" == serialize([0, [1, 2], "abc"])
