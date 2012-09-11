@@ -7,7 +7,7 @@ sys.path.insert(0, "../")
 from common import MyRPC
 
 import socket
-socket.setdefaulttimeout(5)
+socket.setdefaulttimeout(60)
 
 class RPCClient(MyRPC):
 	def __getattr__(self, name):
@@ -22,12 +22,3 @@ class RPCClient(MyRPC):
 			finally:
 				self.conn.close()
 		return cb
-
-if __name__ == "__main__":
-	c = RPCClient("localhost", 8000)
-	assert [1] == c.same([1])
-	assert 1 == c.same(1)
-	assert 3 == c.add(1, 2)
-	assert 11 == c.func1(2, 1, 2, 3)
-	#incorrect function call
-	assert "Error: wrong argcount: add(1,), 2 expected" == c.add(1)

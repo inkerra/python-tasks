@@ -8,7 +8,6 @@ from common import MyRPC
 
 import socket
 
-
 class RPCServer(MyRPC):
 	def __init__(self, ip, port):
 		super(RPCServer, self).__init__(ip, port)
@@ -18,9 +17,6 @@ class RPCServer(MyRPC):
 		self.s.bind((self.ip, self.port))
 		self.s.listen(5)
 	
-	def send_msg(self, data):
-		super(RPCServer, self).send_msg(data)
-
 	def register_function(self, function, name=None):
 		if name is None: name = function.__name__
 		self.funcs[name] = function
@@ -36,7 +32,10 @@ class RPCServer(MyRPC):
 			return "Error: wrong argcount: {}{}, {} expected".format(name, params, f_argcount)
 		return "Error: unregistered function call: {}{}".format(name, params)
 
-	def run(self):
+	def run(self, timeout=None):
+		if timeout is not None:
+			self.s.settimeout(timeout)
+
 		while 1:
 			try:
 				while 1:
@@ -47,14 +46,5 @@ class RPCServer(MyRPC):
 			except:
 				raise
 			finally:
-				self.conn.close()
-
-if __name__ == "__main__":
-	def func1(x, a, b, c):
-		return a * x ** 2 + b * x + c
-		
-	srv = RPCServer("localhost", 8000)
-	srv.register_function(lambda x, y: x + y, "add")
-	srv.register_function(lambda x: x, "same")
-	srv.register_function(func1)
-	srv.run()
+				if self.__dict__.get("conn", None) is not None:
+					self.conn.close()

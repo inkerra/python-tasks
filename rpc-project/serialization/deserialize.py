@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import common
+from common import SerializationError
 
 def get_val(s):
 	eq = s.find('=') # delimiter
@@ -50,6 +50,9 @@ def deserialize(s):
 				lstmode = True
 				st.append(s[i])
 			elif s[i] == ']':
+                                if st == []:
+			            raise SerializationError("invalid bracket expression")
+
 				st.pop()
 				if st == []:
 					lstmode = False
