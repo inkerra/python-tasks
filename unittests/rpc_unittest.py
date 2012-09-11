@@ -33,10 +33,7 @@ class MainTestCase(unittest.TestCase):
 		def run_client(ip, port):
 			client = RPCClient(ip, port)
 			eq_([1], client.same([1]))
-			slst = []
-			for _ in range(1024 * 100):
-				slst.append('a')
-			ast = "".join(slst)
+			ast = "a" * 100 * 1024
 			self.assertEqual(len(ast), len(client.same(ast)))
 			self.assertEqual(1, client.same(1))
 			self.assertEqual(3, client.add(1, 2))
