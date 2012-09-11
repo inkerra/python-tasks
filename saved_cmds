@@ -1,2 +1,3 @@
 python setup.py register sdist --format=zip upload
 python setup.py sdist --format=zip
+python setup.py sdist --format=zip upload -r http://testpypi.python.org
