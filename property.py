@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import functools
 from oktest import ok
 
 class IntField0(object): # requires name parameter
