@@ -23,10 +23,16 @@ class MyRPC(object):
 
 	def get_msg(self, size=None, end=None):
 		if size is not None:
-			res = self.conn.recv(size) #fixme
-			if res < size:
-				res += self.get_msg(size - res)
-			return res
+			sz = 0
+			datalst = []
+			while sz < size:
+				print sz
+				chunk = self.conn.recv(size - sz)
+				sz += len(chunk)
+				print '->', sz
+				datalst.append(chunk)
+			print "res size=", sz
+			return "".join(datalst)
 		
 		if end is not None:
 			buf = []
