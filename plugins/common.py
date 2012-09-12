@@ -5,4 +5,3 @@ class MyNewAction(Opt):
     def action(cls):
         print "common plugin action"
     opt = '--act1'
-

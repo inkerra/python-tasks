@@ -8,3 +8,10 @@ class MyNewOption(Opt):
     value_type = int
     default_value = 0
 
+class D123(object):
+    def __str__(self):
+        return "D123"
+        
+class D1234(object):
+    def __str__(self):
+        return "D1234"
