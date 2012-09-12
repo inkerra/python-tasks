@@ -8,16 +8,32 @@ import os
 import imp
 import inspect
 import re
+import sys
+
+DEBUG_MODE = 1
+
+def dbg(msg):
+    if DEBUG_MODE: sys.stderr.write(msg + "\n")
+
+def source_file(f):
+    if f.rfind('.') == -1: return ""
+    return f[:- len(f) + f.rfind('.')] + '.py'
 
 def import_module_by_path(filepath):
     mod_name, file_ext = os.path.splitext(os.path.split(filepath)[-1])
     try:
-        if file_ext == "py":
+        if sys.modules.has_key(mod_name) and source_file(sys.modules[mod_name].__file__) == source_file(filepath):
+            dbg("skipped (already imported) {} from {}".format(mod_name, filepath))
+            return
+
+        if file_ext == ".py":
+            dbg("importing {} from {}".format(mod_name, filepath))
             return imp.load_source(mod_name, filepath)
-        elif re.match("py[ocd]|so", file_ext):
+        elif re.match("\.py[ocd]|\.so", file_ext):
+            dbg("importing (compiled) {} from {}".format(mod_name, filepath))
             return imp.load_compiled(mod_name, filepath)
     except:
-        print "Skipped {}".format(filepath)
+        dbg("skipped (can't load) {}".format(filepath))
 
 def aspect_python(directory, regexp):
     for (path, dirs, files) in os.walk(directory):
