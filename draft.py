@@ -59,16 +59,17 @@ class Class():
 
     x = property(fset=my_setattr)
 
-class IntField(object):
-    __metaclass__ = MetaField
+class TypedField(object):
+    pass
 
-class StringField(TypeField):
-    def __init__(self):
-        super(StringField, self).__init__(str)
+class IntField(TypedField):
+    typed = int
 
-class ListField(TypeField):
-    def __init__(self):
-        super(ListField, self).__init__(list)
+class StringField(TypedField):
+    typed = str
+
+class ListField(TypedField):
+    typed = list
 
 class MetaD(type):
     def __new__(cls, name, bases, dct):
@@ -76,6 +77,17 @@ class MetaD(type):
         print bases
         print dct
         #dct['__' + name] = name
+
+        rdict = {}
+        for key, val in dct.items():
+            if isinstance(val, TypedField):
+                dct['__' + key] = val
+                del dct[key]
+                rdict.update({key: val.__class__.typed})
+                print "UPD:", rdict
+
+        dct["__restrictions"] = rdict
+        print "RES:", dct
         new_cls = super(MetaD, cls).__new__(cls, name, bases, dct)
 
         #print "===", new_cls.__dict__
@@ -83,20 +95,59 @@ class MetaD(type):
 
 class D(object):
     __metaclass__ = MetaD
-    x = IntField()
+    def __setattr__(self, attr, value):
+        print "try to set '%s' to '%s'" % (attr, value)
 
-class C(object):
-    x = IntField0('x')
-    y = IntField()
+        print "self.dict:", self.__dict__
+        restrictions = self.__class__.__dict__["__restrictions"]
+        if attr  in restrictions.keys():
+            if type(value) is restrictions[attr]:
+                print "set '%s' to '%s'" % (attr, value)
+                self.__dict__[attr] = value
+            else:
+                raise TypeError("incorrect type {} ({} expected)".format(type(value), restrictions[attr]))
+        else:
+            print "notrestricted set '%s' to '%s'" % (attr, value)
+            self.__dict__[attr] = value
+
+    def __getattr__(self, attr):
+        print "try to get '%s'" % attr
+        print self.__dict__
+        if self.__dict__.has_key(attr):
+            if self.__dict__[attr].has_key(__value):
+                return self.__dict__[attr].__value
+            else:
+                return self.__dict__[attr]
+        else:
+            raise AttributeError("no value")
+
+class C(D):
+    x = IntField()
     s = StringField()
     lst = ListField()
-    z = TypeField(int)
 
 if __name__ == "__main__":
-    c = Class(int)
-    c.x =  1
-    print c.x
+    c = C()
+    try:
+        print c.x
+        assert False
+    except:
+        print "empty"
+        pass
+    c.x = 1
+    assert c.x ==  1
+    print c.__dict__
+    print "value:", c.x
+    c.x = 2
+    assert c.x ==  2
+    try:
+        c.x = 's'
+        assert False
+    except:
+        print "just int"
+        pass
 
+    c.s = 1
     #d = D()
     #d.x = 3
 
