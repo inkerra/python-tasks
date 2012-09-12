@@ -32,39 +32,29 @@ class ListField(TypedField):
 
 class MetaD(type):
     def __new__(cls, name, bases, dct):
-        rdict = {}
         for key, val in dct.items():
             if isinstance(val, TypedField):
-                dct['__' + key] = val
-                del dct[key]
+                def setter(key, vtype):
+                    def closure(instance, value):
+                        if type(value) is vtype:
+                            instance.__dict__[key] = value
+                        else:
+                            raise TypeError("incorrect type")
+                    return closure
+                def getter(key):
+                    def closure(instance):
+                        if instance.__dict__.has_key(key):
+                            return instance.__dict__[key]
+                        else:
+                            raise AttributeError("empty property")
+                    return closure
                 if val.__class__.typed is None:
                     raise TypeError("type is not set")
-                rdict.update({key: val.__class__.typed})
-        dct["__restrictions"] = rdict
-        new_cls = super(MetaD, cls).__new__(cls, name, bases, dct)
-
-        return new_cls
+                dct[key] = property(getter(key), setter(key, val.__class__.typed))
+        return super(MetaD, cls).__new__(cls, name, bases, dct)
 
 class D(object):
     __metaclass__ = MetaD
-    def __setattr__(self, attr, value):
-        restrictions = self.__class__.__dict__["__restrictions"]
-        if attr  in restrictions.keys():
-            if type(value) is restrictions[attr]:
-                self.__dict__[attr] = value
-            else:
-                raise TypeError("incorrect type {} ({} expected)".format(type(value), restrictions[attr]))
-        else:
-            self.__dict__[attr] = value
-
-    def __getattr__(self, attr):
-        if self.__dict__.has_key(attr):
-            if self.__dict__[attr].has_key(__value):
-                return self.__dict__[attr].__value
-            else:
-                return self.__dict__[attr]
-        else:
-            raise AttributeError("no value")
 
 class C(D):
     x = IntField()
@@ -75,14 +65,14 @@ class C(D):
 if __name__ == "__main__":
     c = C()
     try:
-        print c.x
+        c.x
         assert False
     except:
         pass
     c.x = 1
-    assert c.x ==  1
+    ok (c.x) ==  (1)
     c.x = 2
-    assert c.x ==  2
+    ok (c.x) ==  (2)
     try:
         c.x = 's'
         assert False
@@ -90,7 +80,7 @@ if __name__ == "__main__":
         pass
     c.z = 100
     assert c.z == 100
-    assert c.x == 2
+    ok (c.x) == (2)
 
     c = C()
     try:
@@ -110,6 +100,8 @@ if __name__ == "__main__":
 
     c.y = 13
     ok (25) == (c.x + c.y)
+    c.y = "abacaba" # y - is not fixed typed
+    ok (c.y) == "abacaba"
 
     try:
         c.s
