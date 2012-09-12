@@ -18,19 +18,19 @@ def import_plugins(directory):
     for (path, dirs, files) in os.walk(directory):
         for f in files:
             if f.endswith(".py"):
-                name = f[:-3]
-                if sys.modules.has_key(name):
-                    old = sys.modules[name].__file__
+                filepath = os.path.join(path, f)
+                mod_name, file_ext = os.path.splitext(os.path.split(filepath)[-1])
+                if sys.modules.has_key(mod_name):
+                    old = sys.modules[mod_name].__file__
                     if old.endswith(".pyc") or old.endswith(".pyo"):
                         old = old[:-1]
-                    modfile = os.path.join(path, f)
-                    if old != modfile:
-                        print "Warning: the same module name for {} and {}".format(modfile, old)
-                        del sys.modules[name]
-                saved_sys_path = sys.path
-                sys.path.insert(0, path)
-                sys.modules[name] = import_module(name)
-                sys.path = saved_sys_path
+                    if old != filepath:
+                        print "Warning: the same module name for {} and {}".format(filepath, old)
+                        del sys.modules[mod_name]
+                try:
+                    sys.modules[mod_name] = imp.load_source(mod_name, filepath)
+                except:
+                    print "Warning: can't load {} from {}, skipped".format(mod_name, filepath)
 
 def set_options():
     parser = argparse.ArgumentParser()
