@@ -16,7 +16,7 @@ def dbg(msg):
     if DEBUG_MODE: sys.stderr.write(msg + "\n")
 
 def source_file(f):
-    if f.rfind('.') == -1: return ""
+    if f.rfind('.') == -1: return f
     return f[:- len(f) + f.rfind('.')] + '.py'
 
 def import_module_by_path(filepath):
