@@ -1,3 +1,5 @@
+from opt_plugin.plugin import MetaOpt, Opt
+
 class MyNewOptionList(Opt):
     @classmethod
     def action(cls, val):

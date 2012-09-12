@@ -2,29 +2,12 @@
 # -*- coding: utf-8 -*-
 
 import argparse
-import subprocess
+import os
+import glob
 import sys
-
-class MetaOpt(type):
-    all_data = []
-    def __new__(cls, name, bases, dct):
-        is_interface = False
-        for i in dct.items():
-            if i[0] == 'opt':
-                opt = i[1]
-        new_cls = super(MetaOpt, cls).__new__(cls, name, bases, dct)
-        if not is_interface:
-            MetaOpt.all_data.append((opt, new_cls))
-        return new_cls
-
-class Opt(object):
-    """ interface for Action classes """
-    __metaclass__ = MetaOpt
-
-    @classmethod
-    def action(cls, *vals):
-        pass
-    opt = '--act'
+from importlib import import_module
+import imp
+from opt_plugin.plugin import MetaOpt, Opt
 
 def update(d, from_class_dict,  name_in_dict, name):
     val = from_class_dict.__dict__.get(name, None)
@@ -32,18 +15,22 @@ def update(d, from_class_dict,  name_in_dict, name):
     d[name_in_dict] = val
 
 def import_plugins(directory):
-    saved_sys_path = sys.path
-    sys.path.insert(0, directory)
-
-    try:
-        find_output = subprocess.check_output(["find", directory, \
-            "-name", "*.py"]).splitlines()
-        for mod in find_output:
-            execfile(mod)
-    except:
-        raise
-    finally:
-        sys.path = saved_sys_path
+    for (path, dirs, files) in os.walk(directory):
+        for f in files:
+            if f.endswith(".py"):
+                name = f[:-3]
+                if sys.modules.has_key(name):
+                    old = sys.modules[name].__file__
+                    if old.endswith(".pyc") or old.endswith(".pyo"):
+                        old = old[:-1]
+                    modfile = os.path.join(path, f)
+                    if old != modfile:
+                        print "Warning: the same module name for {} and {}".format(modfile, old)
+                        del sys.modules[name]
+                saved_sys_path = sys.path
+                sys.path.insert(0, path)
+                sys.modules[name] = import_module(name)
+                sys.path = saved_sys_path
 
 def set_options():
     parser = argparse.ArgumentParser()
@@ -69,5 +56,5 @@ def set_options():
             action()
 
 if __name__ == "__main__":
-    import_plugins("./plugins")
+    import_plugins("plugins")
     set_options()
