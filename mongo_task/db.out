@@ -1,0 +1,425 @@
+reading File #1    reading File #1    
+total_cost: % d Ticks 161285659
+events: Tick
+summary: 161285659
+cmd: your python script
+
+ob=/usr/lib/python2.7/dist-packages/pymongo/common.py
+fn=__set_options
+fl=/usr/lib/python2.7/dist-packages/pymongo/common.py
+169 15
+ob=/usr/lib/python2.7/dist-packages/pymongo/common.py
+fn=validate_boolean
+fl=/usr/lib/python2.7/dist-packages/pymongo/common.py
+28 16
+ob=/usr/lib/python2.7/dist-packages/pymongo/common.py
+fn=validate_read_preference
+fl=/usr/lib/python2.7/dist-packages/pymongo/common.py
+94 11
+ob=/usr/lib/python2.7/dist-packages/pymongo/common.py
+fn=__get_read_pref
+fl=/usr/lib/python2.7/dist-packages/pymongo/common.py
+202 7
+ob=/usr/lib/python2.7/dist-packages/pymongo/common.py
+fn=__get_slave_okay
+fl=/usr/lib/python2.7/dist-packages/pymongo/common.py
+186 15
+ob=/usr/lib/python2.7/dist-packages/pymongo/common.py
+fn=get_lasterror_options
+fl=/usr/lib/python2.7/dist-packages/pymongo/common.py
+230 1758130
+ob=/usr/lib/python2.7/dist-packages/pymongo/common.py
+fn=__get_safe
+fl=/usr/lib/python2.7/dist-packages/pymongo/common.py
+217 1868112
+ob=/usr/lib/python2.7/dist-packages/pymongo/common.py
+fn=__init__
+fl=/usr/lib/python2.7/dist-packages/pymongo/common.py
+149 10
+ob=/usr/lib/python2.7/dist-packages/pymongo/collection.py
+fn=insert
+fl=/usr/lib/python2.7/dist-packages/pymongo/collection.py
+238 3978934
+ob=/usr/lib/python2.7/dist-packages/pymongo/collection.py
+fn=__init__
+fl=/usr/lib/python2.7/dist-packages/pymongo/collection.py
+41 16
+ob=/usr/lib/python2.7/xml/etree/ElementTree.py
+fn=__getitem__
+fl=/usr/lib/python2.7/xml/etree/ElementTree.py
+265 2055490
+ob=/usr/lib/python2.7/dist-packages/pymongo/database.py
+fn=connection
+fl=/usr/lib/python2.7/dist-packages/pymongo/database.py
+115 2438763
+ob=/usr/lib/python2.7/dist-packages/pymongo/database.py
+fn=_fix_incoming
+fl=/usr/lib/python2.7/dist-packages/pymongo/database.py
+244 2840576
+ob=/usr/lib/python2.7/dist-packages/pymongo/database.py
+fn=__getattr__
+fl=/usr/lib/python2.7/dist-packages/pymongo/database.py
+183 8
+ob=/usr/lib/python2.7/dist-packages/pymongo/database.py
+fn=__getitem__
+fl=/usr/lib/python2.7/dist-packages/pymongo/database.py
+193 11
+ob=/usr/lib/python2.7/dist-packages/pymongo/database.py
+fn=name
+fl=/usr/lib/python2.7/dist-packages/pymongo/database.py
+125 27
+ob=/usr/lib/python2.7/dist-packages/bson/objectid.py
+fn=__generate
+fl=/usr/lib/python2.7/dist-packages/bson/objectid.py
+120 7712917
+ob=/usr/lib/python2.7/dist-packages/bson/objectid.py
+fn=__init__
+fl=/usr/lib/python2.7/dist-packages/bson/objectid.py
+56 1685965
+ob=/usr/lib/python2.7/socket.py
+fn=meth
+fl=/usr/lib/python2.7/socket.py
+223 74555299
+ob=/usr/lib/python2.7/dist-packages/pymongo/son_manipulator.py
+fn=transform_incoming
+fl=/usr/lib/python2.7/dist-packages/pymongo/son_manipulator.py
+69 1583582
+ob=/usr/lib/python2.7/dist-packages/pymongo/helpers.py
+fn=_check_command_response
+fl=/usr/lib/python2.7/dist-packages/pymongo/helpers.py
+111 2285263
+ob=/usr/lib/python2.7/dist-packages/pymongo/helpers.py
+fn=_unpack_response
+fl=/usr/lib/python2.7/dist-packages/pymongo/helpers.py
+75 7083050
+ob=/usr/lib/python2.7/dist-packages/pymongo/connection.py
+fn=__check_bson_size
+fl=/usr/lib/python2.7/dist-packages/pymongo/connection.py
+770 1662217
+ob=/usr/lib/python2.7/dist-packages/pymongo/connection.py
+fn=get_socket
+fl=/usr/lib/python2.7/dist-packages/pymongo/connection.py
+147 3118231
+ob=/usr/lib/python2.7/dist-packages/pymongo/connection.py
+fn=__socket
+fl=/usr/lib/python2.7/dist-packages/pymongo/connection.py
+655 2745647
+ob=/usr/lib/python2.7/dist-packages/pymongo/connection.py
+fn=__receive_message_on_socket
+fl=/usr/lib/python2.7/dist-packages/pymongo/connection.py
+836 2333414
+ob=/usr/lib/python2.7/dist-packages/pymongo/connection.py
+fn=_closed
+fl=/usr/lib/python2.7/dist-packages/pymongo/connection.py
+70 31
+ob=/usr/lib/python2.7/dist-packages/pymongo/connection.py
+fn=__check_response_to_last_error
+fl=/usr/lib/python2.7/dist-packages/pymongo/connection.py
+740 1921061
+ob=/usr/lib/python2.7/dist-packages/pymongo/connection.py
+fn=__receive_data_on_socket
+fl=/usr/lib/python2.7/dist-packages/pymongo/connection.py
+822 31183920
+ob=/usr/lib/python2.7/dist-packages/pymongo/connection.py
+fn=_send_message
+fl=/usr/lib/python2.7/dist-packages/pymongo/connection.py
+791 8474921
+
+
+ob=/usr/lib/python2.7/dist-packages/pymongo/common.py
+fn=__init__
+fl=/usr/lib/python2.7/dist-packages/pymongo/common.py
+cob=/usr/lib/python2.7/dist-packages/pymongo/common.py
+cfn=__set_options
+cfl=/usr/lib/python2.7/dist-packages/pymongo/common.py
+calls=1
+149 42
+
+ob=/usr/lib/python2.7/dist-packages/pymongo/common.py
+fn=__set_options
+fl=/usr/lib/python2.7/dist-packages/pymongo/common.py
+cob=/usr/lib/python2.7/dist-packages/pymongo/common.py
+cfn=validate_boolean
+cfl=/usr/lib/python2.7/dist-packages/pymongo/common.py
+calls=2
+169 16
+
+ob=/usr/lib/python2.7/dist-packages/pymongo/common.py
+fn=__set_options
+fl=/usr/lib/python2.7/dist-packages/pymongo/common.py
+cob=/usr/lib/python2.7/dist-packages/pymongo/common.py
+cfn=validate_read_preference
+cfl=/usr/lib/python2.7/dist-packages/pymongo/common.py
+calls=1
+169 11
+
+ob=/usr/lib/python2.7/dist-packages/pymongo/collection.py
+fn=__init__
+fl=/usr/lib/python2.7/dist-packages/pymongo/collection.py
+cob=/usr/lib/python2.7/dist-packages/pymongo/common.py
+cfn=__get_read_pref
+cfl=/usr/lib/python2.7/dist-packages/pymongo/common.py
+calls=1
+41 7
+
+ob=/usr/lib/python2.7/dist-packages/pymongo/collection.py
+fn=__init__
+fl=/usr/lib/python2.7/dist-packages/pymongo/collection.py
+cob=/usr/lib/python2.7/dist-packages/pymongo/common.py
+cfn=__get_slave_okay
+cfl=/usr/lib/python2.7/dist-packages/pymongo/common.py
+calls=1
+41 15
+
+ob=/usr/lib/python2.7/dist-packages/pymongo/collection.py
+fn=insert
+fl=/usr/lib/python2.7/dist-packages/pymongo/collection.py
+cob=/usr/lib/python2.7/dist-packages/pymongo/common.py
+cfn=get_lasterror_options
+cfl=/usr/lib/python2.7/dist-packages/pymongo/common.py
+calls=100000
+238 1758123
+
+ob=/usr/lib/python2.7/dist-packages/pymongo/collection.py
+fn=__init__
+fl=/usr/lib/python2.7/dist-packages/pymongo/collection.py
+cob=/usr/lib/python2.7/dist-packages/pymongo/common.py
+cfn=get_lasterror_options
+cfl=/usr/lib/python2.7/dist-packages/pymongo/common.py
+calls=1
+41 7
+
+ob=/usr/lib/python2.7/dist-packages/pymongo/collection.py
+fn=insert
+fl=/usr/lib/python2.7/dist-packages/pymongo/collection.py
+cob=/usr/lib/python2.7/dist-packages/pymongo/common.py
+cfn=__get_safe
+cfl=/usr/lib/python2.7/dist-packages/pymongo/common.py
+calls=100000
+238 1868106
+
+ob=/usr/lib/python2.7/dist-packages/pymongo/collection.py
+fn=__init__
+fl=/usr/lib/python2.7/dist-packages/pymongo/collection.py
+cob=/usr/lib/python2.7/dist-packages/pymongo/common.py
+cfn=__get_safe
+cfl=/usr/lib/python2.7/dist-packages/pymongo/common.py
+calls=1
+41 6
+
+ob=/usr/lib/python2.7/dist-packages/pymongo/collection.py
+fn=__init__
+fl=/usr/lib/python2.7/dist-packages/pymongo/collection.py
+cob=/usr/lib/python2.7/dist-packages/pymongo/common.py
+cfn=__init__
+cfl=/usr/lib/python2.7/dist-packages/pymongo/common.py
+calls=1
+41 52
+
+ob=PythonInterpreter
+fn=execute
+fl=PythonInterpreter
+cob=/usr/lib/python2.7/dist-packages/pymongo/collection.py
+cfn=insert
+cfl=/usr/lib/python2.7/dist-packages/pymongo/collection.py
+calls=100000
+0 159230020
+
+ob=/usr/lib/python2.7/dist-packages/pymongo/database.py
+fn=__getattr__
+fl=/usr/lib/python2.7/dist-packages/pymongo/database.py
+cob=/usr/lib/python2.7/dist-packages/pymongo/collection.py
+cfn=__init__
+cfl=/usr/lib/python2.7/dist-packages/pymongo/collection.py
+calls=1
+183 130
+
+ob=PythonInterpreter
+fn=execute
+fl=PythonInterpreter
+cob=/usr/lib/python2.7/xml/etree/ElementTree.py
+cfn=__getitem__
+cfl=/usr/lib/python2.7/xml/etree/ElementTree.py
+calls=100001
+0 2055490
+
+ob=/usr/lib/python2.7/dist-packages/pymongo/collection.py
+fn=insert
+fl=/usr/lib/python2.7/dist-packages/pymongo/collection.py
+cob=/usr/lib/python2.7/dist-packages/pymongo/database.py
+cfn=connection
+cfl=/usr/lib/python2.7/dist-packages/pymongo/database.py
+calls=100000
+238 2438763
+
+ob=/usr/lib/python2.7/dist-packages/pymongo/collection.py
+fn=insert
+fl=/usr/lib/python2.7/dist-packages/pymongo/collection.py
+cob=/usr/lib/python2.7/dist-packages/pymongo/database.py
+cfn=_fix_incoming
+cfl=/usr/lib/python2.7/dist-packages/pymongo/database.py
+calls=100000
+238 13823040
+
+ob=PythonInterpreter
+fn=execute
+fl=PythonInterpreter
+cob=/usr/lib/python2.7/dist-packages/pymongo/database.py
+cfn=__getitem__
+cfl=/usr/lib/python2.7/dist-packages/pymongo/database.py
+calls=1
+0 149
+
+ob=/usr/lib/python2.7/dist-packages/pymongo/collection.py
+fn=__init__
+fl=/usr/lib/python2.7/dist-packages/pymongo/collection.py
+cob=/usr/lib/python2.7/dist-packages/pymongo/database.py
+cfn=name
+cfl=/usr/lib/python2.7/dist-packages/pymongo/database.py
+calls=1
+41 27
+
+ob=/usr/lib/python2.7/dist-packages/pymongo/database.py
+fn=__getitem__
+fl=/usr/lib/python2.7/dist-packages/pymongo/database.py
+cob=/usr/lib/python2.7/dist-packages/pymongo/database.py
+cfn=__getattr__
+cfl=/usr/lib/python2.7/dist-packages/pymongo/database.py
+calls=1
+193 138
+
+ob=/usr/lib/python2.7/dist-packages/bson/objectid.py
+fn=__init__
+fl=/usr/lib/python2.7/dist-packages/bson/objectid.py
+cob=/usr/lib/python2.7/dist-packages/bson/objectid.py
+cfn=__generate
+cfl=/usr/lib/python2.7/dist-packages/bson/objectid.py
+calls=100000
+56 7712917
+
+ob=/usr/lib/python2.7/dist-packages/pymongo/son_manipulator.py
+fn=transform_incoming
+fl=/usr/lib/python2.7/dist-packages/pymongo/son_manipulator.py
+cob=/usr/lib/python2.7/dist-packages/bson/objectid.py
+cfn=__init__
+cfl=/usr/lib/python2.7/dist-packages/bson/objectid.py
+calls=100000
+69 9398882
+
+ob=/usr/lib/python2.7/dist-packages/pymongo/connection.py
+fn=_send_message
+fl=/usr/lib/python2.7/dist-packages/pymongo/connection.py
+cob=/usr/lib/python2.7/socket.py
+cfn=meth
+cfl=/usr/lib/python2.7/socket.py
+calls=100000
+791 74555278
+
+ob=/usr/lib/python2.7/dist-packages/pymongo/connection.py
+fn=_closed
+fl=/usr/lib/python2.7/dist-packages/pymongo/connection.py
+cob=/usr/lib/python2.7/socket.py
+cfn=meth
+cfl=/usr/lib/python2.7/socket.py
+calls=1
+70 21
+
+ob=/usr/lib/python2.7/dist-packages/pymongo/database.py
+fn=_fix_incoming
+fl=/usr/lib/python2.7/dist-packages/pymongo/database.py
+cob=/usr/lib/python2.7/dist-packages/pymongo/son_manipulator.py
+cfn=transform_incoming
+cfl=/usr/lib/python2.7/dist-packages/pymongo/son_manipulator.py
+calls=100000
+244 10982464
+
+ob=/usr/lib/python2.7/dist-packages/pymongo/connection.py
+fn=__check_response_to_last_error
+fl=/usr/lib/python2.7/dist-packages/pymongo/connection.py
+cob=/usr/lib/python2.7/dist-packages/pymongo/helpers.py
+cfn=_check_command_response
+cfl=/usr/lib/python2.7/dist-packages/pymongo/helpers.py
+calls=100000
+740 2285263
+
+ob=/usr/lib/python2.7/dist-packages/pymongo/connection.py
+fn=__check_response_to_last_error
+fl=/usr/lib/python2.7/dist-packages/pymongo/connection.py
+cob=/usr/lib/python2.7/dist-packages/pymongo/helpers.py
+cfn=_unpack_response
+cfl=/usr/lib/python2.7/dist-packages/pymongo/helpers.py
+calls=100000
+740 7083050
+
+ob=/usr/lib/python2.7/dist-packages/pymongo/connection.py
+fn=_send_message
+fl=/usr/lib/python2.7/dist-packages/pymongo/connection.py
+cob=/usr/lib/python2.7/dist-packages/pymongo/connection.py
+cfn=__check_bson_size
+cfl=/usr/lib/python2.7/dist-packages/pymongo/connection.py
+calls=100000
+791 1662217
+
+ob=/usr/lib/python2.7/dist-packages/pymongo/connection.py
+fn=__socket
+fl=/usr/lib/python2.7/dist-packages/pymongo/connection.py
+cob=/usr/lib/python2.7/dist-packages/pymongo/connection.py
+cfn=get_socket
+cfl=/usr/lib/python2.7/dist-packages/pymongo/connection.py
+calls=100000
+655 3118231
+
+ob=/usr/lib/python2.7/dist-packages/pymongo/connection.py
+fn=_send_message
+fl=/usr/lib/python2.7/dist-packages/pymongo/connection.py
+cob=/usr/lib/python2.7/dist-packages/pymongo/connection.py
+cfn=__socket
+cfl=/usr/lib/python2.7/dist-packages/pymongo/connection.py
+calls=100000
+791 5863930
+
+ob=/usr/lib/python2.7/dist-packages/pymongo/connection.py
+fn=_send_message
+fl=/usr/lib/python2.7/dist-packages/pymongo/connection.py
+cob=/usr/lib/python2.7/dist-packages/pymongo/connection.py
+cfn=__receive_message_on_socket
+cfl=/usr/lib/python2.7/dist-packages/pymongo/connection.py
+calls=100000
+791 33517334
+
+ob=/usr/lib/python2.7/dist-packages/pymongo/connection.py
+fn=__socket
+fl=/usr/lib/python2.7/dist-packages/pymongo/connection.py
+cob=/usr/lib/python2.7/dist-packages/pymongo/connection.py
+cfn=_closed
+cfl=/usr/lib/python2.7/dist-packages/pymongo/connection.py
+calls=1
+655 52
+
+ob=/usr/lib/python2.7/dist-packages/pymongo/connection.py
+fn=_send_message
+fl=/usr/lib/python2.7/dist-packages/pymongo/connection.py
+cob=/usr/lib/python2.7/dist-packages/pymongo/connection.py
+cfn=__check_response_to_last_error
+cfl=/usr/lib/python2.7/dist-packages/pymongo/connection.py
+calls=100000
+791 11289374
+
+ob=/usr/lib/python2.7/dist-packages/pymongo/collection.py
+fn=insert
+fl=/usr/lib/python2.7/dist-packages/pymongo/collection.py
+cob=/usr/lib/python2.7/dist-packages/pymongo/connection.py
+cfn=_send_message
+cfl=/usr/lib/python2.7/dist-packages/pymongo/connection.py
+calls=100000
+238 135363054
+
+ob=/usr/lib/python2.7/dist-packages/pymongo/connection.py
+fn=__receive_message_on_socket
+fl=/usr/lib/python2.7/dist-packages/pymongo/connection.py
+cob=/usr/lib/python2.7/dist-packages/pymongo/connection.py
+cfn=__receive_data_on_socket
+cfl=/usr/lib/python2.7/dist-packages/pymongo/connection.py
+calls=200000
+836 31183920
+

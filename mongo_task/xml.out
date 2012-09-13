@@ -1,0 +1,514 @@
+reading File #1    reading File #1    
+total_cost: % d Ticks 28656765
+events: Tick
+summary: 28656765
+cmd: your python script
+
+ob=/usr/lib/python2.7/xml/etree/ElementTree.py
+fn=feed
+fl=/usr/lib/python2.7/xml/etree/ElementTree.py
+1639 36569
+ob=/usr/lib/python2.7/xml/etree/ElementTree.py
+fn=getroot
+fl=/usr/lib/python2.7/xml/etree/ElementTree.py
+619 10
+ob=/usr/lib/python2.7/xml/etree/ElementTree.py
+fn=end
+fl=/usr/lib/python2.7/xml/etree/ElementTree.py
+1434 1653882
+ob=/usr/lib/python2.7/xml/etree/ElementTree.py
+fn=_flush
+fl=/usr/lib/python2.7/xml/etree/ElementTree.py
+1389 2932727
+ob=/usr/lib/python2.7/xml/etree/ElementTree.py
+fn=append
+fl=/usr/lib/python2.7/xml/etree/ElementTree.py
+300 1627704
+ob=/usr/lib/python2.7/xml/etree/ElementTree.py
+fn=parse
+fl=/usr/lib/python2.7/xml/etree/ElementTree.py
+644 44
+1181 15
+ob=/usr/lib/python2.7/xml/etree/ElementTree.py
+fn=start
+fl=/usr/lib/python2.7/xml/etree/ElementTree.py
+1418 1338999
+ob=/usr/lib/python2.7/xml/etree/ElementTree.py
+fn=_end
+fl=/usr/lib/python2.7/xml/etree/ElementTree.py
+1549 875964
+ob=/usr/lib/python2.7/xml/etree/ElementTree.py
+fn=_fixtext
+fl=/usr/lib/python2.7/xml/etree/ElementTree.py
+1509 6051788
+ob=/usr/lib/python2.7/xml/etree/ElementTree.py
+fn=close
+fl=/usr/lib/python2.7/xml/etree/ElementTree.py
+1384 17
+1651 31
+ob=/usr/lib/python2.7/xml/etree/ElementTree.py
+fn=_fixname
+fl=/usr/lib/python2.7/xml/etree/ElementTree.py
+1516 3492252
+ob=/usr/lib/python2.7/xml/etree/ElementTree.py
+fn=_default
+fl=/usr/lib/python2.7/xml/etree/ElementTree.py
+1568 31
+ob=/usr/lib/python2.7/xml/etree/ElementTree.py
+fn=_start_list
+fl=/usr/lib/python2.7/xml/etree/ElementTree.py
+1536 789228
+ob=/usr/lib/python2.7/xml/etree/ElementTree.py
+fn=data
+fl=/usr/lib/python2.7/xml/etree/ElementTree.py
+1407 1227252
+ob=/usr/lib/python2.7/xml/etree/ElementTree.py
+fn=_data
+fl=/usr/lib/python2.7/xml/etree/ElementTree.py
+1546 858403
+ob=/usr/lib/python2.7/xml/etree/ElementTree.py
+fn=__init__
+fl=/usr/lib/python2.7/xml/etree/ElementTree.py
+1368 60
+1458 116
+207 2448403
+607 12
+ob=/usr/lib/python2.7/xml/parsers/expat.py
+fn=<module>
+fl=/usr/lib/python2.7/xml/parsers/expat.py
+1 1643
+ob=/usr/lib/python2.7/encodings/__init__.py
+fn=search_function
+fl=/usr/lib/python2.7/encodings/__init__.py
+71 45
+ob=/usr/lib/python2.7/encodings/__init__.py
+fn=normalize_encoding
+fl=/usr/lib/python2.7/encodings/__init__.py
+49 34
+ob=/usr/lib/python2.7/encodings/ascii.py
+fn=StreamWriter
+fl=/usr/lib/python2.7/encodings/ascii.py
+28 64
+ob=/usr/lib/python2.7/encodings/ascii.py
+fn=IncrementalEncoder
+fl=/usr/lib/python2.7/encodings/ascii.py
+20 26
+ob=/usr/lib/python2.7/encodings/ascii.py
+fn=StreamConverter
+fl=/usr/lib/python2.7/encodings/ascii.py
+34 24
+ob=/usr/lib/python2.7/encodings/ascii.py
+fn=StreamReader
+fl=/usr/lib/python2.7/encodings/ascii.py
+31 19
+ob=/usr/lib/python2.7/encodings/ascii.py
+fn=Codec
+fl=/usr/lib/python2.7/encodings/ascii.py
+13 31
+ob=/usr/lib/python2.7/encodings/ascii.py
+fn=getregentry
+fl=/usr/lib/python2.7/encodings/ascii.py
+41 31
+ob=/usr/lib/python2.7/encodings/ascii.py
+fn=IncrementalDecoder
+fl=/usr/lib/python2.7/encodings/ascii.py
+24 77
+ob=/usr/lib/python2.7/encodings/ascii.py
+fn=<module>
+fl=/usr/lib/python2.7/encodings/ascii.py
+8 287
+ob=/usr/lib/python2.7/xml/parsers/__init__.py
+fn=<module>
+fl=/usr/lib/python2.7/xml/parsers/__init__.py
+8 232
+ob=/build/buildd/python2.7-2.7.3/Modules/pyexpat.c
+fn=StartElement
+fl=/build/buildd/python2.7-2.7.3/Modules/pyexpat.c
+566 2523078
+ob=/build/buildd/python2.7-2.7.3/Modules/pyexpat.c
+fn=CharacterData
+fl=/build/buildd/python2.7-2.7.3/Modules/pyexpat.c
+441 1510035
+ob=/build/buildd/python2.7-2.7.3/Modules/pyexpat.c
+fn=DefaultHandlerExpand
+fl=/build/buildd/python2.7-2.7.3/Modules/pyexpat.c
+839 1708
+ob=/build/buildd/python2.7-2.7.3/Modules/pyexpat.c
+fn=EndElement
+fl=/build/buildd/python2.7-2.7.3/Modules/pyexpat.c
+618 1285892
+ob=/usr/lib/python2.7/codecs.py
+fn=__new__
+fl=/usr/lib/python2.7/codecs.py
+77 32
+
+
+ob=/usr/lib/python2.7/xml/etree/ElementTree.py
+fn=parse
+fl=/usr/lib/python2.7/xml/etree/ElementTree.py
+cob=/usr/lib/python2.7/xml/etree/ElementTree.py
+cfn=feed
+cfl=/usr/lib/python2.7/xml/etree/ElementTree.py
+calls=70
+644 28654585
+
+ob=PythonInterpreter
+fn=execute
+fl=PythonInterpreter
+cob=/usr/lib/python2.7/xml/etree/ElementTree.py
+cfn=getroot
+cfl=/usr/lib/python2.7/xml/etree/ElementTree.py
+calls=1
+0 10
+
+ob=/usr/lib/python2.7/xml/etree/ElementTree.py
+fn=_end
+fl=/usr/lib/python2.7/xml/etree/ElementTree.py
+cob=/usr/lib/python2.7/xml/etree/ElementTree.py
+cfn=end
+cfl=/usr/lib/python2.7/xml/etree/ElementTree.py
+calls=100001
+1549 3622168
+
+ob=/usr/lib/python2.7/xml/etree/ElementTree.py
+fn=start
+fl=/usr/lib/python2.7/xml/etree/ElementTree.py
+cob=/usr/lib/python2.7/xml/etree/ElementTree.py
+cfn=_flush
+cfl=/usr/lib/python2.7/xml/etree/ElementTree.py
+calls=100001
+1418 964441
+
+ob=/usr/lib/python2.7/xml/etree/ElementTree.py
+fn=end
+fl=/usr/lib/python2.7/xml/etree/ElementTree.py
+cob=/usr/lib/python2.7/xml/etree/ElementTree.py
+cfn=_flush
+cfl=/usr/lib/python2.7/xml/etree/ElementTree.py
+calls=100001
+1434 1968286
+
+ob=/usr/lib/python2.7/xml/etree/ElementTree.py
+fn=start
+fl=/usr/lib/python2.7/xml/etree/ElementTree.py
+cob=/usr/lib/python2.7/xml/etree/ElementTree.py
+cfn=append
+cfl=/usr/lib/python2.7/xml/etree/ElementTree.py
+calls=100000
+1418 1627704
+
+ob=PythonInterpreter
+fn=execute
+fl=PythonInterpreter
+cob=/usr/lib/python2.7/xml/etree/ElementTree.py
+cfn=parse
+cfl=/usr/lib/python2.7/xml/etree/ElementTree.py
+calls=1
+0 28656755
+
+ob=/usr/lib/python2.7/xml/etree/ElementTree.py
+fn=parse
+fl=/usr/lib/python2.7/xml/etree/ElementTree.py
+cob=/usr/lib/python2.7/xml/etree/ElementTree.py
+cfn=parse
+cfl=/usr/lib/python2.7/xml/etree/ElementTree.py
+calls=1
+1181 28656728
+
+ob=/usr/lib/python2.7/xml/etree/ElementTree.py
+fn=_start_list
+fl=/usr/lib/python2.7/xml/etree/ElementTree.py
+cob=/usr/lib/python2.7/xml/etree/ElementTree.py
+cfn=start
+cfl=/usr/lib/python2.7/xml/etree/ElementTree.py
+calls=100001
+1536 6379547
+
+ob=/build/buildd/python2.7-2.7.3/Modules/pyexpat.c
+fn=EndElement
+fl=/build/buildd/python2.7-2.7.3/Modules/pyexpat.c
+cob=/usr/lib/python2.7/xml/etree/ElementTree.py
+cfn=_end
+cfl=/usr/lib/python2.7/xml/etree/ElementTree.py
+calls=100001
+618 5723322
+
+ob=/usr/lib/python2.7/xml/etree/ElementTree.py
+fn=_fixname
+fl=/usr/lib/python2.7/xml/etree/ElementTree.py
+cob=/usr/lib/python2.7/xml/etree/ElementTree.py
+cfn=_fixtext
+cfl=/usr/lib/python2.7/xml/etree/ElementTree.py
+calls=3
+1516 749
+
+ob=/usr/lib/python2.7/xml/etree/ElementTree.py
+fn=_start_list
+fl=/usr/lib/python2.7/xml/etree/ElementTree.py
+cob=/usr/lib/python2.7/xml/etree/ElementTree.py
+cfn=_fixtext
+cfl=/usr/lib/python2.7/xml/etree/ElementTree.py
+calls=100000
+1536 3949353
+
+ob=/usr/lib/python2.7/xml/etree/ElementTree.py
+fn=_data
+fl=/usr/lib/python2.7/xml/etree/ElementTree.py
+cob=/usr/lib/python2.7/xml/etree/ElementTree.py
+cfn=_fixtext
+cfl=/usr/lib/python2.7/xml/etree/ElementTree.py
+calls=100018
+1546 2102356
+
+ob=/usr/lib/python2.7/xml/etree/ElementTree.py
+fn=parse
+fl=/usr/lib/python2.7/xml/etree/ElementTree.py
+cob=/usr/lib/python2.7/xml/etree/ElementTree.py
+cfn=close
+cfl=/usr/lib/python2.7/xml/etree/ElementTree.py
+calls=1
+644 48
+
+ob=/usr/lib/python2.7/xml/etree/ElementTree.py
+fn=close
+fl=/usr/lib/python2.7/xml/etree/ElementTree.py
+cob=/usr/lib/python2.7/xml/etree/ElementTree.py
+cfn=close
+cfl=/usr/lib/python2.7/xml/etree/ElementTree.py
+calls=1
+1651 17
+
+ob=/usr/lib/python2.7/xml/etree/ElementTree.py
+fn=_end
+fl=/usr/lib/python2.7/xml/etree/ElementTree.py
+cob=/usr/lib/python2.7/xml/etree/ElementTree.py
+cfn=_fixname
+cfl=/usr/lib/python2.7/xml/etree/ElementTree.py
+calls=100001
+1549 1225190
+
+ob=/usr/lib/python2.7/xml/etree/ElementTree.py
+fn=_start_list
+fl=/usr/lib/python2.7/xml/etree/ElementTree.py
+cob=/usr/lib/python2.7/xml/etree/ElementTree.py
+cfn=_fixname
+cfl=/usr/lib/python2.7/xml/etree/ElementTree.py
+calls=200001
+1536 2267811
+
+ob=/build/buildd/python2.7-2.7.3/Modules/pyexpat.c
+fn=DefaultHandlerExpand
+fl=/build/buildd/python2.7-2.7.3/Modules/pyexpat.c
+cob=/usr/lib/python2.7/xml/etree/ElementTree.py
+cfn=_default
+cfl=/usr/lib/python2.7/xml/etree/ElementTree.py
+calls=2
+839 31
+
+ob=/build/buildd/python2.7-2.7.3/Modules/pyexpat.c
+fn=StartElement
+fl=/build/buildd/python2.7-2.7.3/Modules/pyexpat.c
+cob=/usr/lib/python2.7/xml/etree/ElementTree.py
+cfn=_start_list
+cfl=/usr/lib/python2.7/xml/etree/ElementTree.py
+calls=100001
+566 13385939
+
+ob=/usr/lib/python2.7/xml/etree/ElementTree.py
+fn=_data
+fl=/usr/lib/python2.7/xml/etree/ElementTree.py
+cob=/usr/lib/python2.7/xml/etree/ElementTree.py
+cfn=data
+cfl=/usr/lib/python2.7/xml/etree/ElementTree.py
+calls=100018
+1546 1227252
+
+ob=/build/buildd/python2.7-2.7.3/Modules/pyexpat.c
+fn=CharacterData
+fl=/build/buildd/python2.7-2.7.3/Modules/pyexpat.c
+cob=/usr/lib/python2.7/xml/etree/ElementTree.py
+cfn=_data
+cfl=/usr/lib/python2.7/xml/etree/ElementTree.py
+calls=100018
+441 4188011
+
+ob=/usr/lib/python2.7/xml/etree/ElementTree.py
+fn=start
+fl=/usr/lib/python2.7/xml/etree/ElementTree.py
+cob=/usr/lib/python2.7/xml/etree/ElementTree.py
+cfn=__init__
+cfl=/usr/lib/python2.7/xml/etree/ElementTree.py
+calls=100001
+1418 2448403
+
+ob=/usr/lib/python2.7/xml/etree/ElementTree.py
+fn=parse
+fl=/usr/lib/python2.7/xml/etree/ElementTree.py
+cob=/usr/lib/python2.7/xml/etree/ElementTree.py
+cfn=__init__
+cfl=/usr/lib/python2.7/xml/etree/ElementTree.py
+calls=1
+1181 12
+
+ob=/usr/lib/python2.7/xml/etree/ElementTree.py
+fn=parse
+fl=/usr/lib/python2.7/xml/etree/ElementTree.py
+cob=/usr/lib/python2.7/xml/etree/ElementTree.py
+cfn=__init__
+cfl=/usr/lib/python2.7/xml/etree/ElementTree.py
+calls=2
+644 2051
+
+ob=/usr/lib/python2.7/xml/etree/ElementTree.py
+fn=__init__
+fl=/usr/lib/python2.7/xml/etree/ElementTree.py
+cob=/usr/lib/python2.7/xml/parsers/expat.py
+cfn=<module>
+cfl=/usr/lib/python2.7/xml/parsers/expat.py
+calls=1
+1458 1643
+
+ob=/usr/lib/python2.7/xml/etree/ElementTree.py
+fn=_fixtext
+fl=/usr/lib/python2.7/xml/etree/ElementTree.py
+cob=/usr/lib/python2.7/encodings/__init__.py
+cfn=search_function
+cfl=/usr/lib/python2.7/encodings/__init__.py
+calls=1
+1509 670
+
+ob=/usr/lib/python2.7/encodings/__init__.py
+fn=search_function
+fl=/usr/lib/python2.7/encodings/__init__.py
+cob=/usr/lib/python2.7/encodings/__init__.py
+cfn=normalize_encoding
+cfl=/usr/lib/python2.7/encodings/__init__.py
+calls=1
+71 34
+
+ob=/usr/lib/python2.7/encodings/ascii.py
+fn=<module>
+fl=/usr/lib/python2.7/encodings/ascii.py
+cob=/usr/lib/python2.7/encodings/ascii.py
+cfn=StreamWriter
+cfl=/usr/lib/python2.7/encodings/ascii.py
+calls=1
+8 64
+
+ob=/usr/lib/python2.7/encodings/ascii.py
+fn=<module>
+fl=/usr/lib/python2.7/encodings/ascii.py
+cob=/usr/lib/python2.7/encodings/ascii.py
+cfn=IncrementalEncoder
+cfl=/usr/lib/python2.7/encodings/ascii.py
+calls=1
+8 26
+
+ob=/usr/lib/python2.7/encodings/ascii.py
+fn=<module>
+fl=/usr/lib/python2.7/encodings/ascii.py
+cob=/usr/lib/python2.7/encodings/ascii.py
+cfn=StreamConverter
+cfl=/usr/lib/python2.7/encodings/ascii.py
+calls=1
+8 24
+
+ob=/usr/lib/python2.7/encodings/__init__.py
+fn=search_function
+fl=/usr/lib/python2.7/encodings/__init__.py
+cob=/usr/lib/python2.7/encodings/ascii.py
+cfn=<module>
+cfl=/usr/lib/python2.7/encodings/ascii.py
+calls=1
+71 528
+
+ob=/usr/lib/python2.7/encodings/ascii.py
+fn=<module>
+fl=/usr/lib/python2.7/encodings/ascii.py
+cob=/usr/lib/python2.7/encodings/ascii.py
+cfn=Codec
+cfl=/usr/lib/python2.7/encodings/ascii.py
+calls=1
+8 31
+
+ob=/usr/lib/python2.7/encodings/__init__.py
+fn=search_function
+fl=/usr/lib/python2.7/encodings/__init__.py
+cob=/usr/lib/python2.7/encodings/ascii.py
+cfn=getregentry
+cfl=/usr/lib/python2.7/encodings/ascii.py
+calls=1
+71 63
+
+ob=/usr/lib/python2.7/encodings/ascii.py
+fn=<module>
+fl=/usr/lib/python2.7/encodings/ascii.py
+cob=/usr/lib/python2.7/encodings/ascii.py
+cfn=IncrementalDecoder
+cfl=/usr/lib/python2.7/encodings/ascii.py
+calls=1
+8 77
+
+ob=/usr/lib/python2.7/encodings/ascii.py
+fn=<module>
+fl=/usr/lib/python2.7/encodings/ascii.py
+cob=/usr/lib/python2.7/encodings/ascii.py
+cfn=StreamReader
+cfl=/usr/lib/python2.7/encodings/ascii.py
+calls=1
+8 19
+
+ob=/usr/lib/python2.7/xml/etree/ElementTree.py
+fn=__init__
+fl=/usr/lib/python2.7/xml/etree/ElementTree.py
+cob=/usr/lib/python2.7/xml/parsers/__init__.py
+cfn=<module>
+cfl=/usr/lib/python2.7/xml/parsers/__init__.py
+calls=1
+1458 232
+
+ob=/usr/lib/python2.7/xml/etree/ElementTree.py
+fn=feed
+fl=/usr/lib/python2.7/xml/etree/ElementTree.py
+cob=/build/buildd/python2.7-2.7.3/Modules/pyexpat.c
+cfn=StartElement
+cfl=/build/buildd/python2.7-2.7.3/Modules/pyexpat.c
+calls=100001
+1639 15909017
+
+ob=/usr/lib/python2.7/xml/etree/ElementTree.py
+fn=feed
+fl=/usr/lib/python2.7/xml/etree/ElementTree.py
+cob=/build/buildd/python2.7-2.7.3/Modules/pyexpat.c
+cfn=CharacterData
+cfl=/build/buildd/python2.7-2.7.3/Modules/pyexpat.c
+calls=100018
+1639 5698046
+
+ob=/usr/lib/python2.7/xml/etree/ElementTree.py
+fn=feed
+fl=/usr/lib/python2.7/xml/etree/ElementTree.py
+cob=/build/buildd/python2.7-2.7.3/Modules/pyexpat.c
+cfn=DefaultHandlerExpand
+cfl=/build/buildd/python2.7-2.7.3/Modules/pyexpat.c
+calls=2
+1639 1739
+
+ob=/usr/lib/python2.7/xml/etree/ElementTree.py
+fn=feed
+fl=/usr/lib/python2.7/xml/etree/ElementTree.py
+cob=/build/buildd/python2.7-2.7.3/Modules/pyexpat.c
+cfn=EndElement
+cfl=/build/buildd/python2.7-2.7.3/Modules/pyexpat.c
+calls=100001
+1639 7009214
+
+ob=/usr/lib/python2.7/encodings/ascii.py
+fn=getregentry
+fl=/usr/lib/python2.7/encodings/ascii.py
+cob=/usr/lib/python2.7/codecs.py
+cfn=__new__
+cfl=/usr/lib/python2.7/codecs.py
+calls=1
+41 32
+
