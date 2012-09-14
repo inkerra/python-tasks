@@ -51,7 +51,7 @@ def gen_code(node, code_map, buff_stack=[]):
 def encode(content):
     occur_table = {}
     for byte in content:
-        occur_table.setdefault(byte, 1)
+        occur_table.setdefault(byte, 0)
         occur_table[byte] += 1
 
     root = build_tree([Node(byte = byte, w = int(w)) for (byte, w) in occur_table.iteritems()])
